@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\Wali;
 use DB;
@@ -19,23 +20,29 @@ class RelasiSeeder extends Seeder
         DB::table('mahasiswas')->delete();
         DB::table('walis')->delete();
 
-        /************************************
-         *** SEEDER DOSEN UNTUK RELASI SELANJUTNYA ***
-         ***********************************/
+        // Siapkan Seeder Dosen disini
+        DB::table('dosens')->delete();
+        $dosen = Dosen::create(array(
+            'nama' => 'Eko',
+            'nipd' => '1234567890'));
+        # Kemudian tambahkan nilai id_dosen ditiap record mahasiswa
 
         // Kita akan membuat 3 orang mahasiswa sebagai sampel
 
         $ani = Mahasiswa::create(array(
             'nama' => 'Ani',
-            'nim' => 'D015015072'));
-
+            'nim' => 'D015015072',
+            'id_dosen' => $dosen->id));
+            
         $budi = Mahasiswa::create(array(
             'nama' => 'Budi',
-            'nim' => 'D015015088'));
-
-        $nia = Mahasiswa::create(array(
+            'nim' => 'D015015088',
+            'id_dosen' => $dosen->id));
+            
+            $nia = Mahasiswa::create(array(
             'nama' => 'Nia',
-            'nim' => 'D015015078'));
+            'nim' => 'D015015078',
+            'id_dosen' => $dosen->id));
 
         # Informasi ketika mahasiswa telah diisi.
         $this->command->info('Mahasiswa telah diisi!');

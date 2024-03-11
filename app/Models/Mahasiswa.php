@@ -9,19 +9,28 @@ class Mahasiswa extends Model
 {
     use HasFactory;
     # Tentukan  nama tabel terkait
-    protected $table  = 'mahasiswas';
-    # MASS ASSIGNMENT
-    # Untuk membatasi  attribut yang boleh di isi (Untuk keamanan)
+    // protected $table  = 'mahasiswas';
+    // jika aturan penamaan model dan Migration singular dan plural
+    // maka code ini tidak perlu digunakan
+    
+    # Mass Asignment -> bisa menambah data secara bersamaan 
     protected $fillable = ['nama', 'nim'];
 
-    /**
-     * Relasi One-to-One
-     * =================
-     * Buat funtion bernama 'Wali', dimana model 'Mahasiswa' memiliki relasi One-to-One 
-     * terhadap model 'Wali' melalui 'id_mahasiswa'
-     */
     public function wali()
     {
+        // model Mahasiswa bisa memliki 1 data dari model wali
+        // melalui fk 'id_mahasiswa'
         return $this->hasOne('App\Models\Wali', 'id_mahasiswa');
+    }
+
+        /**
+     * Relasi One-to-One
+     * =================
+     */
+
+    public function dosen()
+    {
+        // data model mahasiswa dimiliki oleh model dosen melalui fk 'id_dosen'
+        return  $this->belongsTo('App\Models\Dosen', 'id_dosen');
     }
 }
