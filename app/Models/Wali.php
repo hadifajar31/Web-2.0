@@ -18,7 +18,8 @@ class Wali extends Model
     /* 
     * Relasi One-to-One 
     * ==================
-    * Sebaliknya, buat funtion  bernama mahasiswa(), dimana model 'wali' memiliki relasi One-to-One (belongsTo)
+    * Sebaliknya, buat funtion  bernama mahasiswa(), 
+    * dimana model 'wali' memiliki relasi One-to-One (belongsTo)
     * sebagai timbal balik model 'Mahasiswa' melalui 'id_mahasiswa'
     */
     public function mahasiswa()
